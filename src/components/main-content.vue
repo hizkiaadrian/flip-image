@@ -1,6 +1,6 @@
 <template>
   <b-container fluid class="main-content">
-    <img v-if="url" :src="url" alt="Image placeholder" />
+    <Flipboard v-if="url" :url="url" />
     <b-card
       v-else
       border-variant="dark"
@@ -9,12 +9,12 @@
       title="Flip Image"
       class="text-center w-50 p-5"
     >
-      <b-card-text
-        >Flip Image allows you to flip an image horizontally or vertically, or
+      <b-card-text>
+        Flip Image allows you to flip an image horizontally or vertically, or
         both. Start by either uploading a file or generating a random
         picture</b-card-text
-      ></b-card
-    >
+      >
+    </b-card>
     <input
       type="file"
       accept="image/jpeg, image/png"
@@ -24,21 +24,23 @@
     />
     <b-row>
       <b-btn variant="primary" @click="chooseFile">Upload an image</b-btn>
-      <b-btn variant="info" @click="generateRandomImage"
-        >Generate a random picture</b-btn
-      >
+      <b-btn variant="primary" @click="generateRandomImage">
+        Generate a random picture
+      </b-btn>
     </b-row>
   </b-container>
 </template>
 
 <script>
 import Vue from "vue";
+import Flipboard from "./flipboard.vue";
 
 export default Vue.extend({
   name: "my-main-content",
+  components: { Flipboard },
   data: function() {
     return {
-      counter: 1,
+      imageCounter: 1,
       url: null
     };
   },
@@ -50,7 +52,7 @@ export default Vue.extend({
       this.url = URL.createObjectURL(this.$refs["image-input"].files[0]);
     },
     generateRandomImage() {
-      this.url = `https://picsum.photos/300/200?random=${this.counter++}`;
+      this.url = `https://picsum.photos/300/200?random=${this.imageCounter++}`;
     }
   }
 });
@@ -72,11 +74,5 @@ export default Vue.extend({
 
 .card {
   margin: 2rem;
-}
-
-img {
-  margin: 2rem;
-  width: 50%;
-  border: 5px solid chocolate;
 }
 </style>
