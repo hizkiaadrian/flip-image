@@ -1,29 +1,33 @@
 <template>
   <div id="app">
-    <img alt="Vue logo" src="./assets/logo.png" />
-    <HelloWorld msg="Welcome to Your Vue.js + TypeScript App" />
+    <Navbar appTitle="Flip Image" />
+    <MainContent />
+    <Footer />
   </div>
 </template>
 
 <script lang="ts">
 import Vue from "vue";
-import HelloWorld from "./components/HelloWorld.vue";
+import Navbar from "./components/navbar.vue";
+import Footer from "./components/footer.vue";
+import MainContent from "./components/main-content.vue";
 
 export default Vue.extend({
   name: "App",
   components: {
-    HelloWorld
+    Navbar,
+    MainContent,
+    Footer
   }
 });
 </script>
 
 <style>
 #app {
-  font-family: Avenir, Helvetica, Arial, sans-serif;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-  text-align: center;
-  color: #2c3e50;
-  margin-top: 60px;
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
 }
 </style>
